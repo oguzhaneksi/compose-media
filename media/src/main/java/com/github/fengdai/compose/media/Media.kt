@@ -23,7 +23,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.text.Cue
+import com.google.android.exoplayer2.text.CueGroup
 import kotlinx.coroutines.flow.collect
 
 /**
@@ -107,7 +107,7 @@ fun Media(
     keepContentOnPlayerReset: Boolean = false,
     useArtwork: Boolean = true,
     defaultArtworkPainter: Painter? = null,
-    subtitles: @Composable ((List<Cue>) -> Unit)? = null, // TODO
+    subtitles: @Composable ((CueGroup) -> Unit)? = null, // TODO
     showBuffering: ShowBuffering = ShowBuffering.Never,
     buffering: @Composable (() -> Unit)? = null,
     errorMessage: @Composable ((PlaybackException) -> Unit)? = null,
@@ -222,7 +222,7 @@ fun Media(
 
         // subtitles
         if (subtitles != null) {
-            val cues = state.playerState?.cues.takeIf { !it.isNullOrEmpty() } ?: emptyList()
+            val cues = state.playerState?.cues.takeIf { !it?.cues.isNullOrEmpty() } ?: CueGroup.EMPTY
             subtitles(cues)
         }
 

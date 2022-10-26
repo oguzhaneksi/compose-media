@@ -42,5 +42,6 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.exoplayer.core)
     implementation(libs.exoplayer.ui)
+    implementation(libs.exoplayer.ima)
     implementation(libs.accompanist.systemuicontroller)
 }

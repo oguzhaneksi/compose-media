@@ -142,8 +142,8 @@ class MediaState(
     // false: non video track is selected
     // null: there isn't any track
     internal val isVideoTrackSelected: Boolean? by derivedStateOf {
-        playerState?.tracksInfo
-            ?.takeIf { it.trackGroupInfos.isNotEmpty() }
+        playerState?.tracks
+            ?.takeIf { it.groups.isNotEmpty() }
             ?.isTypeSelected(C.TRACK_TYPE_VIDEO)
     }
 
